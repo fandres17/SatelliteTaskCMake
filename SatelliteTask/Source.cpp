@@ -1,7 +1,7 @@
-#include "Satellite.h"
-#include "ISatellite.h"
-#include "Task.h"
-#include "TerrainStation.h"
+#include "include/Satellite.h"
+#include "include/ISatellite.h"
+#include "include/Task.h"
+#include "include/TerrainStation.h"
 #include <vector>
 #include <fstream>
 #include <iostream>

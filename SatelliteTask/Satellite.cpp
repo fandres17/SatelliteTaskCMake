@@ -1,8 +1,8 @@
-#include "Satellite.h"
+#include "include/Satellite.h"
 #include <iostream>
 #include <mutex>
 #include <stdlib.h>
-#include "ITerrainStation.h"
+#include "include/ITerrainStation.h"
 
 
 
