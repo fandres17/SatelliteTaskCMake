@@ -64,7 +64,6 @@ int main(int argc, char** argv) {
 void readTasksFromFile(std::string &filename) {
 
 	std::ifstream input{ filename };
-	//std::ifstream input{ "inputData1.txt" };
 	if (input.fail()) {	
 		throw std::runtime_error("Could not open/locate file with input tasks");
 	}

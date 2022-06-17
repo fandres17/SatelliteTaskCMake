@@ -7,3 +7,5 @@ project ("SatelliteTaskCMake")
 
 # Include sub-projects.
 add_subdirectory ("SatelliteTask")
+
+enable_testing()
