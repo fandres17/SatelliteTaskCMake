@@ -9,7 +9,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED true)
 # Add source to this project's executables.
 add_executable (SatelliteTasking    "include/ISatellite.h" "include/ITerrainStation.h" "src/Satellite.cpp" "include/Satellite.h" "src/Source.cpp" "src/Task.cpp"   "include/TaskInfoTerrain.h"  "include/TaskResult.h" "src/TerrainStation.cpp" "include/TerrainStation.h" "include/Task.h" )
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lpthread")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lpthread -pthread")
+string(APPEND CMAKE_EXE_LINKER_FLAGS "-lpthread")
 
 # TODO: Add tests and install targets if needed.
 add_custom_command(TARGET SatelliteTasking POST_BUILD
