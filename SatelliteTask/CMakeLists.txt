@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
 # Add source to this project's executables.
-add_executable (SatelliteTasking  "SatelliteTaskCMake.h"  "include/ISatellite.h" "include/ITerrainStation.h" "src/Satellite.cpp" "include/Satellite.h" "src/Source.cpp" "src/Task.cpp"   "include/TaskInfoTerrain.h"  "include/TaskResult.h" "src/TerrainStation.cpp" "include/TerrainStation.h" "include/Task.h" "Tester.cpp")
+add_executable (SatelliteTasking    "include/ISatellite.h" "include/ITerrainStation.h" "src/Satellite.cpp" "include/Satellite.h" "src/Source.cpp" "src/Task.cpp"   "include/TaskInfoTerrain.h"  "include/TaskResult.h" "src/TerrainStation.cpp" "include/TerrainStation.h" "include/Task.h" )
 
 # TODO: Add tests and install targets if needed.
 add_custom_command(TARGET SatelliteTasking POST_BUILD
@@ -20,13 +20,54 @@ enable_testing()
 add_test(NAME Test0 COMMAND SatelliteTasking)
 set_tests_properties(
 	Test0
-	PROPERTIES PASS_REGULAR_EXPRESSION "Task added to Sat1<--- task: fotos payoff:10 resources: 1 5 [\r
-	\n\t]*Task added to Sat2<--- task: mantenimiento payoff:1 resources: 1 2 [\r
-	\n\t]*Task added to Sat2<--- task: pruebas payoff:1 resources: 5 6 "
+	PROPERTIES 
+	PASS_REGULAR_EXPRESSION "fotos"
+	PASS_REGULAR_EXPRESSION "mantenimiento"
+	PASS_REGULAR_EXPRESSION "pruebas"
+	FAIL_REGULAR_EXPRESSION "fsck"
 )
 
-add_test(NAME Test1 COMMAND SatelliteTasking test1.txt)
+add_test(NAME Test1 COMMAND SatelliteTasking test2.txt)
 set_tests_properties(
 	Test1
-	PROPERTIES PASS_REGULAR_EXPRESSION "Task"
+	PROPERTIES 
+	PASS_REGULAR_EXPRESSION "fotos"
+	PASS_REGULAR_EXPRESSION "fsck"
+	FAIL_REGULAR_EXPRESSION "pruebas"
+	FAIL_REGULAR_EXPRESSION "mantenimiento"
+)
+
+add_test(NAME Test2 COMMAND SatelliteTasking test2.txt)
+set_tests_properties(
+	Test2
+	PROPERTIES 
+	PASS_REGULAR_EXPRESSION "fotos"
+	PASS_REGULAR_EXPRESSION "fsck"
+	FAIL_REGULAR_EXPRESSION "pruebas"
+	FAIL_REGULAR_EXPRESSION "mantenimiento"
+)
+
+add_test(NAME Test3 COMMAND SatelliteTasking test3.txt)
+set_tests_properties(
+	Test3
+	PROPERTIES 
+	PASS_REGULAR_EXPRESSION "medir"
+	PASS_REGULAR_EXPRESSION "comunicar"
+	PASS_REGULAR_EXPRESSION "diagnosticar"
+	PASS_REGULAR_EXPRESSION "actualizar"
+	FAIL_REGULAR_EXPRESSION "reparar"
+)
+
+add_test(NAME Test4 COMMAND SatelliteTasking test4.txt)
+set_tests_properties(
+	Test4
+	PROPERTIES 
+	PASS_REGULAR_EXPRESSION "Autodiagnostico"
+	PASS_REGULAR_EXPRESSION "Fotografiar"
+	PASS_REGULAR_EXPRESSION "Transmitir"
+	PASS_REGULAR_EXPRESSION "Explorar"
+	PASS_REGULAR_EXPRESSION "Espiar"
+	FAIL_REGULAR_EXPRESSION "Conectar"
+	FAIL_REGULAR_EXPRESSION "Matenimiento"
+	FAIL_REGULAR_EXPRESSION "Suspension"
 )

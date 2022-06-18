@@ -1,0 +1,4 @@
+fotos	6	1	5	7	8	9	11	10
+mantenimiento	2	1	2	1
+pruebas	2	5	6	1
+fsck	2	1	6	100
