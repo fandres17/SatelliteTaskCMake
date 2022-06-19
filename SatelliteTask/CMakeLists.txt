@@ -18,7 +18,10 @@ add_custom_command(TARGET SatelliteTasking POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy_directory
 	${CMAKE_SOURCE_DIR}/SatelliteTask/resources/ $<TARGET_FILE_DIR:SatelliteTasking>
 )
-install(TARGETS SatelliteTasking DESTINATION bin)
+install(TARGETS SatelliteTasking DESTINATION /bin)
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/SatelliteTask/resources/
+		DESTINATION /bin/resources		
+)
 
 
 
