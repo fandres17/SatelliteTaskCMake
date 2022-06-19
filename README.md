@@ -51,17 +51,6 @@ The following is the structure of each line (row):<br/>
 
 Each column is separated by a tabulation.<br/>
 
-If you add a new executable, say `app/hello.cpp`, you only need to add the following two lines to [CMakeLists.txt](CMakeLists.txt):
-
-``` cmake
-add_executable(main app/main.cpp)   # Name of exec. and location of file.
-target_link_libraries(main PRIVATE ${LIBRARY_NAME})  # Link the executable to lib built from src/*.cpp (if it uses it).
-```
-
-You can find the example source code that builds the `main` executable in [app/main.cpp](app/main.cpp) under the `Build` section in [CMakeLists.txt](CMakeLists.txt).
-If the executable you made does not use the library in [src/](src), then only the first line is needed.
-
-
 ## Building
 
 Clone the repository, and change directory to the folder created. Then use typical cmake commands as shown in the example:
@@ -75,14 +64,26 @@ Example:
 > cmake --build .
 > make test      # Makes and runs the tests.
 ```
+## Installing
+
+After building you can install
+Example: On the project directory
+
+``` bash
+> cmake --install . --prefix "."
+```
+This will install the executable in a bin folder. The prefix can be changed to desired path location. In the installation you will also find the resources directory with some example input files.
+
 ## Running the executable
 
-Once you have build the project you will be able to run the executable. The executable receive an input filename as parameter.
+Once you have build/install the project you will be able to run the executable. The executable receive an input filename as parameter.
 
 Example:
 
 ``` bash
 
-> cd SatelliteTask/
-> ./SatelliteTasking test2.txt
+> ./SatelliteTasking resources/test2.txt
 ```
+
+## Automating tests
+the resources folder includes 4 test files which can be tested with `make test`  command. The expected output for each one of this test files is in the CMakeLists.txt file. The test performs a regex search to find the desired answer in the output console. For more information check [CMakeLists.txt](SatelliteTask/CMakeLists.txt) file.
