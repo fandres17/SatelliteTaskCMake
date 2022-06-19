@@ -9,6 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED true)
 # Add source to this project's executables.
 add_executable (SatelliteTasking    "include/ISatellite.h" "include/ITerrainStation.h" "src/Satellite.cpp" "include/Satellite.h" "src/Source.cpp" "src/Task.cpp"   "include/TaskInfoTerrain.h"  "include/TaskResult.h" "src/TerrainStation.cpp" "include/TerrainStation.h" "include/Task.h" )
 
+#this flags are required by gcc
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lpthread -pthread")
 string(APPEND CMAKE_EXE_LINKER_FLAGS "-lpthread")
 
@@ -19,10 +20,22 @@ add_custom_command(TARGET SatelliteTasking POST_BUILD
 )
 
 
+install(TARGETS SatelliteTasking
+        CONFIGURATIONS Debug
+        RUNTIME DESTINATION Debug/bin)
+install(TARGETS SatelliteTasking
+        CONFIGURATIONS Release
+        RUNTIME DESTINATION Release/bin)
+
 
 enable_testing()
 
-add_test(NAME Test0 COMMAND SatelliteTasking)
+#The following tests are related with some given input files
+#The test will pass if the tasks that maximize the payoff are assigned to satellites, so
+#they will appear in the std output when performig a regex search
+#The task that were not assigned will not appear in the std output so the test will
+#fail if those tasks are found in a regex search
+add_test(NAME Test0 COMMAND SatelliteTasking inputData1.txt)
 set_tests_properties(
 	Test0
 	PROPERTIES 
