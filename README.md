@@ -1,6 +1,6 @@
 # SatelliteTaskCMake
 Satellite tasking simulation with 2 satellites and a terrain station. 
-The input of the system is a txt file with different tasks, each task contanining a number of resources and payoff. This tasks have to be assigned by the terrain station to the satellites taking into account that if a resource is being used by the satellite, then no other task that uses the same resource should be assigned to the satellite. Each task contains a payoff which is a number indicating the benefit of executing it. The goal for the terraing station is to maximize payoff in the assignation of tasks.
+The input of the system is a txt file with different tasks, each task contanining a number of resources and payoff. These tasks have to be assigned by the terrain station to the satellites taking into account that if a resource is being used by the satellite, then no other task that uses the same resource should be assigned to the satellite. Each task contains a payoff which is a number indicating the benefit of executing it. The goal for the terrain station is to maximize payoff in the assignation of tasks.
 
 ## Structure
 ``` text
